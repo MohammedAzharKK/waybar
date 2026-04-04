@@ -1,0 +1,265 @@
+* {
+    font-family: 'Roboto', FontAwesome, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(30, 30, 46, 0.7); /* Deep Glassmorphism (Catppuccin Mocha Base) */
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #cdd6f4;
+    transition-property: background-color;
+    transition-duration: .5s;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+button {
+    box-shadow: none;
+    border: none;
+    border-radius: 12px;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+}
+
+tooltip {
+    background: rgba(30, 30, 46, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+}
+tooltip label {
+    color: #cdd6f4;
+}
+
+#custom-os_button {
+    background-color: #89b4fa; /* Blue */
+    color: #1e1e2e;
+    border-radius: 10px;
+    margin: 3px 2px 3px 6px;
+    padding: 0 8px;
+    font-size: 16px;
+}
+
+#workspaces {
+    background-color: rgba(24, 24, 37, 0.6); /* Mantle */
+    border-radius: 10px;
+    margin: 3px 2px;
+    padding: 1px 3px;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    color: #bac2de;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+#workspaces button:hover {
+    background: rgba(205, 214, 244, 0.2);
+}
+
+#workspaces button.focused, #workspaces button.active {
+    color: #cba6f7; /* Mauve */
+    border-radius: 12px;
+}
+
+#workspaces button.urgent {
+    color: #f38ba8; /* Red */
+}
+
+/* Base styles for all modules */
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#bluetooth,
+#pulseaudio,
+#pulseaudio.microphone,
+#custom-media,
+#custom-weather,
+#custom-updates,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#mpd,
+#keyboard-state,
+#window,
+#custom-power {
+    background-color: rgba(49, 50, 68, 0.6); /* Surface0 */
+    border-radius: 10px;
+    margin: 3px 2px;
+    padding: 0 10px;
+    color: #cdd6f4;
+}
+
+#window {
+    background-color: rgba(137, 180, 250, 0.1);
+    color: #cdd6f4;
+    font-weight: 500;
+}
+
+#clock {
+    background-color: rgba(137, 180, 250, 0.2);
+    color: #89b4fa;
+    font-weight: 700;
+}
+
+#custom-weather {
+    color: #89dceb;
+}
+
+#custom-updates {
+    color: #a6e3a1;
+}
+
+#battery {
+    color: #a6e3a1; /* Green */
+}
+#battery.charging, #battery.plugged {
+    color: #26A65B;
+    background-color: rgba(166, 227, 161, 0.2);
+}
+
+@keyframes blink {
+    to {
+        background-color: rgba(243, 139, 168, 0.5); /* Red tinted */
+        color: #1e1e2e;
+    }
+}
+
+#battery.critical:not(.charging) {
+    color: #f38ba8;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#power-profiles-daemon {
+    color: #f9e2af; /* Yellow */
+}
+#power-profiles-daemon.performance {
+    color: #f38ba8;
+}
+#power-profiles-daemon.balanced {
+    color: #89b4fa;
+}
+#power-profiles-daemon.power-saver {
+    color: #a6e3a1;
+}
+
+#cpu {
+    color: #89dceb; /* Sky */
+}
+
+#memory {
+    color: #cba6f7; /* Mauve */
+}
+
+#disk {
+    color: #fab387; /* Peach */
+}
+
+#backlight {
+    color: #f9e2af; /* Yellow */
+}
+
+#network {
+    color: #b4befe; /* Lavender */
+}
+#network.disconnected {
+    color: #f38ba8;
+}
+
+#bluetooth {
+    color: #74c7ec; /* Sapphire */
+}
+
+#pulseaudio, #pulseaudio.microphone {
+    color: #f5c2e7; /* Pink */
+}
+#pulseaudio.muted, #pulseaudio.microphone.muted {
+    color: #7f849c; /* Overlay1 */
+}
+
+#custom-media {
+    color: #a6e3a1;
+    min-width: 100px;
+}
+
+#temperature {
+    color: #f9e2af;
+}
+#temperature.critical {
+    color: #f38ba8;
+}
+
+#tray.passive {
+    -gtk-icon-effect: dim;
+}
+#tray.needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: rgba(243, 139, 168, 0.2);
+}
+
+#idle_inhibitor {
+    color: #9399b2; /* Overlay2 */
+}
+#idle_inhibitor.activated {
+    color: #cdd6f4;
+}
+
+#mpd {
+    color: #a6e3a1;
+}
+#mpd.disconnected {
+    color: #f38ba8;
+}
+#mpd.stopped {
+    color: #6c7086;
+}
+#mpd.paused {
+    color: #89b4fa;
+}
+
+#language {
+    color: #eba0ac; /* Maroon */
+}
+
+#keyboard-state {
+    color: #fab387;
+}
+#keyboard-state > label.locked {
+    color: #f38ba8;
+}
+
+#scratchpad {
+    color: #f2cdcd; /* Flamingo */
+}
+#scratchpad.empty {
+	background-color: transparent;
+}
+
+#custom-power {
+    background-color: #f38ba8;
+    color: #1e1e2e;
+    border-radius: 10px;
+    margin: 3px 6px 3px 2px;
+    padding: 0 10px;
+    font-size: 14px;
+}
