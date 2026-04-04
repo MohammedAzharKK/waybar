@@ -132,11 +132,13 @@
 
     "cpu": {
         "format": "󰘚 {usage}%",
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "python3 /home/azhar/.config/waybar/system_health_rpm.py"
     },
 
     "memory": {
-        "format": " {}%"
+        "format": " {}%",
+        "on-click": "python3 /home/azhar/.config/waybar/system_health_rpm.py"
     },
 
     "disk": {
