@@ -12,8 +12,9 @@
 
     "modules-left": [
         "custom/os_button",
-        "sway/workspaces",
-        "sway/mode",
+        "hyprland/workspaces",
+        "custom/gear_shifter",
+        "hyprland/submap",
         "sway/scratchpad",
         "custom/weather",
         "custom/media"
@@ -25,6 +26,7 @@
     "modules-right": [
         "tray",
         "custom/updates",
+        "custom/turbo",
         "idle_inhibitor",
         "mpd",
         "bluetooth",
@@ -39,7 +41,7 @@
         "backlight",
         "keyboard-state",
         "battery",
-        "custom/power"
+        "custom/engine_start"
     ],
 
     "custom/os_button": {
@@ -48,7 +50,7 @@
         "on-click": "wofi --show drun"
     },
 
-    "sway/workspaces": {
+    "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
         "warp-on-scroll": false,
@@ -85,7 +87,7 @@
         }
     },
 
-    "sway/mode": {
+    "hyprland/submap": {
         "format": "<span style=\"italic\">{}</span>"
     },
 
@@ -133,12 +135,12 @@
     "cpu": {
         "format": "󰘚 {usage}%",
         "tooltip": false,
-        "on-click": "python3 /home/azhar/.config/waybar/system_health_rpm.py"
+        "on-click": "/home/azhar/.config/waybar/toggle_widget.sh system_health_rpm.py"
     },
 
     "memory": {
         "format": " {}%",
-        "on-click": "python3 /home/azhar/.config/waybar/system_health_rpm.py"
+        "on-click": "/home/azhar/.config/waybar/toggle_widget.sh system_health_rpm.py"
     },
 
     "disk": {
@@ -168,7 +170,8 @@
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
         "format-alt": "{icon} {time}",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": ["", "", "", "", ""],
+        "on-click": "/home/azhar/.config/waybar/toggle_widget.sh battery_liquid.py"
     },
 
     "power-profiles-daemon": {
@@ -190,7 +193,7 @@
         "format-linked": " {ifname} (No IP)",
         "format-disconnected": "⚠ Disconnected",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "on-click": "python3 /home/azhar/.config/waybar/netspeed_rpm.py"
+        "on-click": "/home/azhar/.config/waybar/toggle_widget.sh netspeed_rpm.py"
     },
 
     "bluetooth": {
@@ -242,11 +245,12 @@
     },
 
     "custom/weather": {
-        "format": "{}°",
+        "format": "{}",
         "tooltip": true,
         "interval": 3600,
-        "exec": "wttrbar",
-        "return-type": "json"
+        "exec": "python3 /home/azhar/.config/waybar/weather_bar.py",
+        "return-type": "json",
+        "on-click": "/home/azhar/.config/waybar/toggle_widget.sh weather_rpm.py"
     },
 
     "custom/updates": {
@@ -258,9 +262,24 @@
         "signal": 8
     },
 
-    "custom/power": {
-        "format": "⏻",
+    "custom/gear_shifter": {
+        "exec": "/home/azhar/.config/waybar/gear_shifter.sh",
+        "interval": 1,
+        "format": "󱊟 {}",
+        "tooltip": false
+    },
+
+    "custom/turbo": {
+        "format": "󰓅",
+        "on-click": "/home/azhar/.config/waybar/toggle_widget.sh turbo_boost.py",
+        "tooltip": true,
+        "tooltip-format": "Turbo Boost (Disk I/O)"
+    },
+
+    "custom/engine_start": {
+        "format": "󱐋",
         "tooltip": false,
+        "on-click": "wlogout",
         "menu": "on-click",
         "menu-file": "$HOME/.config/waybar/power_menu.xml",
         "menu-actions": {
