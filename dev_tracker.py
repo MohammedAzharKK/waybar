@@ -65,14 +65,21 @@ def get_git_commits():
     total_commits = 0
     
     try:
-        # Find all .git directories up to SEARCH_DEPTH
-        find_cmd = ["find", REPOS_SEARCH_PATH, "-maxdepth", str(SEARCH_DEPTH), "-name", ".git", "-type", "d"]
-        repos = subprocess.check_output(find_cmd, stderr=subprocess.DEVNULL).decode().strip().split("\n")
+        # Find all .git directories excluding heavy noise directories
+        find_cmd = [
+            "find", REPOS_SEARCH_PATH, "-maxdepth", str(SEARCH_DEPTH),
+            "(", "-name", ".cache", "-o", "-name", ".local", "-o", "-name", ".pub-cache", "-o", "-name", "node_modules", ")", "-prune",
+            "-o", "-name", ".git", "-type", "d", "-print"
+        ]
+        
+        result = subprocess.run(find_cmd, capture_output=True, text=True)
+        repos = result.stdout.strip().split("\n")
         
         if not repos or repos == ['']:
             return 0
             
         for git_dir in repos:
+            if not git_dir: continue
             repo_path = os.path.dirname(git_dir)
             try:
                 # Count all commits in the repo since today 00:00:00
