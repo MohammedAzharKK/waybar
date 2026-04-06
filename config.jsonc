@@ -2,17 +2,16 @@
 {
     "layer": "top",
     "position": "top",
-    "margin-top": 4,
-    "margin-left": 8,
-    "margin-right": 8,
+    "margin-top": 8,
+    "margin-left": 10,
+    "margin-right": 10,
     "margin-bottom": 0,
-    "height": 30,
-    "spacing": 2,
+    "height": 34,
+    "spacing": 4,
     "exclusive": true,
 
     "modules-left": [
         "custom/os_button",
-        "hyprland/workspaces",
         "custom/gear_shifter",
         "hyprland/submap",
         "sway/scratchpad",
@@ -27,19 +26,13 @@
         "tray",
         "custom/updates",
         "custom/turbo",
-        "idle_inhibitor",
-        "mpd",
-        "bluetooth",
         "pulseaudio",
         "pulseaudio#microphone",
         "network",
         "power-profiles-daemon",
         "cpu",
         "memory",
-        "disk",
-        "temperature",
         "backlight",
-        "keyboard-state",
         "battery",
         "custom/engine_start"
     ],
@@ -265,7 +258,7 @@
     "custom/gear_shifter": {
         "exec": "/home/azhar/.config/waybar/gear_shifter.sh",
         "interval": 1,
-        "format": "󱊟 {}",
+        "format": "{}",
         "tooltip": false
     },
 
