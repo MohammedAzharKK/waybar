@@ -272,7 +272,7 @@
 
     "custom/dev_tracker": {
         "format": "{}",
-        "interval": 300,
+        "interval": 30,
         "exec": "python3 /home/azhar/.config/waybar/dev_tracker.py",
         "return-type": "json",
         "tooltip": true

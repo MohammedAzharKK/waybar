@@ -8,7 +8,7 @@ from datetime import datetime
 # Configuration
 IDES = ["antigravity", "code", "vscodium", "nvim", "pycharm", "subl", "emacs", "zed"]
 REPOS_SEARCH_PATH = os.path.expanduser("~")
-SEARCH_DEPTH = 3
+SEARCH_DEPTH = 5
 
 def get_coding_time():
     """
@@ -75,15 +75,14 @@ def get_git_commits():
         for git_dir in repos:
             repo_path = os.path.dirname(git_dir)
             try:
-                # Count commits by the current user since today 00:00:00
+                # Count all commits in the repo since today 00:00:00
                 commit_count = subprocess.check_output(
-                    ["git", "-C", repo_path, "log", "--author", subprocess.check_output(["git", "config", "user.name"]).decode().strip(), 
-                     "--since", "00:00:00", "--all", "--no-merges", "--oneline"],
+                    ["git", "-C", repo_path, "rev-list", "--count", "--since", "00:00:00", "--all", "--no-merges"],
                     stderr=subprocess.DEVNULL
                 ).decode().strip()
                 
                 if commit_count:
-                    total_commits += len(commit_count.split("\n"))
+                    total_commits += int(commit_count)
             except Exception:
                 continue
     except Exception:
