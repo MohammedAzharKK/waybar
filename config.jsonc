@@ -25,6 +25,7 @@
     "modules-right": [
         "tray",
         "custom/updates",
+        "custom/dev_tracker",
         "custom/turbo",
         "pulseaudio",
         "pulseaudio#microphone",
@@ -269,6 +270,13 @@
         "tooltip-format": "Turbo Boost (Disk I/O)"
     },
 
+    "custom/dev_tracker": {
+        "format": "{}",
+        "interval": 300,
+        "exec": "python3 /home/azhar/.config/waybar/dev_tracker.py",
+        "return-type": "json",
+        "tooltip": true
+    },
     "custom/engine_start": {
         "format": "󱐋",
         "tooltip": false,
